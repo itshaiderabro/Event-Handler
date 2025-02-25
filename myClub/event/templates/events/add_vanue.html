@@ -1,0 +1,35 @@
+{% extends 'events/base.html' %}
+
+        {%block body%}
+
+        {%if user.is_authenticated%}
+        <center> <h1> Add Vanue </h1></center>
+        <br>
+        <br>
+        <br>
+        {%if submitted %}
+           <center>Your vanue has been added successfully!!!</center> 
+        
+        {%else%}
+                <center>
+                
+                <form action="" method="post" enctype="multipart/form-data">
+                  {%csrf_token%}
+                 {{form.as_p}}
+
+            <input type="Submit", class="btn btn-primary", value="submit">
+            
+        </form>       
+                </center>
+        
+            {%endif%}
+        {%else%}
+            <h1>You must be logged in to view this Page... </h1>
+            <a href="{%url 'login' %}">Log In</a>
+         {%endif%}
+
+
+           
+
+         {%endblock%}
+         

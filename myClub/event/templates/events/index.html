@@ -1,0 +1,107 @@
+{% extends 'events/base.html' %}
+   
+
+        {%block body%}
+       
+
+          <script>
+              function updateTime() {
+                    var now = new Date();
+                    var timeString = now.toLocaleTimeString();
+                    document.getElementById('time').innerHTML = timeString;
+                }
+                setInterval(updateTime, 1000);
+            </script>
+           
+        
+            </div>
+            <center>
+            <h1>{{name}}</h1>
+            <br>
+            <br>
+            <div id="time">{{time}}</div>
+            <br>
+            <br>
+            <div id="calendar-container">
+              <p>{{ cal | safe }}</p>
+            </div>
+            <br>
+            <br>
+            <br>
+
+            <style>
+              #calendar-container {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              flex-direction: column;
+              }
+              table {
+              width: 100%;
+              max-width: 600px;
+              border-collapse: collapse;
+              }
+              th, td {
+              border: 1px solid #ddd;
+              padding: 8px;
+              text-align: center;
+              }
+              th {
+              background-color: #f2f2f2;
+              }
+              td:hover {
+              background-color: #f5f5f5;
+              cursor: pointer;
+              }
+            </style>
+{%if events%}
+{%for event in events%}
+            <script>
+              document.addEventListener('DOMContentLoaded', function() {
+              const cells = document.querySelectorAll('#calendar-container td');
+              cells.forEach(cell => {
+               if (cell.innerText === '{{ event.date|date:"j" }}') {  
+                 cell.style.backgroundColor = 'lightblue';
+                 cell.style.cursor = 'pointer';
+               }
+                cell.addEventListener('click', function() {
+                if (cell.innerText === '{{ event.date|date:"j" }}') {
+                  localStorage.setItem('selectedDate', cell.innerText);
+
+
+                  window.location.href = '/show_event/{{event.id}}';
+                  
+                }
+                });
+              });
+              });
+            </script>
+            </center>
+              
+              
+              <div class="card" style="margin-bottom: 20px;">
+                <div class="card-header">
+                  <h1>{{event.title}}</h1>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">Date: {{event.date}}</h5>
+                  <p class="card-text">
+                    <li>Vanue: {{event.vanue}}</li>
+                    <li>Description: {{event.description}}</li>
+                    <li>Manager: {{event.manager}}</li>
+                  
+                   
+              <br>
+              <br>
+              {%endfor%}
+              {%else%}
+              <center><h2>Sorry...! This month havan't any event</h2></center>
+              {%endif%}
+
+             <center> copyright &copy; {{year}}</center>
+         
+         
+         
+         
+         {%endblock%}
+         

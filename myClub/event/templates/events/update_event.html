@@ -1,0 +1,31 @@
+{% extends 'events/index.html'%}
+
+{% block body %}
+{%if user.is_authenticated%}
+    {%if user == van.manager%}   
+    <br>
+    <br>
+    <center><h1>Update Event</h1>
+    <br>
+<form action="" method="post">
+    {% csrf_token %}
+    {{form.as_p}}<br>
+    <input type="submit" value="Update" class="btn btn-secondary">
+</form>
+</center>
+    {%else%}
+<h1>Access Denied</h1>
+<p>You must be manager of this event to update event. </p>
+Manager: {{van.manager}}
+<br>
+logged in as: {{user}}
+    {%endif%}
+
+
+{%else%}
+<h1>You must be logged in to view this Page... </h1>
+<a href="{%url 'login' %}">Log In</a>
+{%endif%}
+            
+           
+    {%endblock%}

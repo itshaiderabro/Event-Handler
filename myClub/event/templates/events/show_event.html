@@ -1,0 +1,45 @@
+{% extends 'events/index.html'%}
+
+{% block body %}
+
+    
+           
+<div class="card" style="margin-bottom: 20px;">
+    <div class="card-header">
+      
+        <h1>{{event.title}}</h1>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title"> Vanue: {{event.vanue}}</h5>
+      <p class="card-text">
+        <li>Description: {{event.description}}</li>
+        <li>Date: {{event.date}}</li>
+        <li>Till days: {{event.days_till}}</li>
+        <li>Manager: {{event.manager}}</li>
+        <li>
+            Attandee:
+        {% for attand in event.attend.all %}
+        <br>
+           {{attand.firstname}} {{attend.lastname}} 
+            {% endfor %}
+        </li>
+        
+    </p>
+    {%if user.is_authenticated%}
+        {%if user == event.manager%}
+    <a style="float:right;margin-left: 5px;" href="{% url 'delete_event' event.id %}" class="btn btn-danger btn-sm">Delete</a>
+    <a style="float:right;" href="{% url 'update_event' event.id %}" class="btn btn-secondary btn-sm">Update</a>
+       
+    {%endif%}
+    {%endif%}
+
+
+     
+    </div>
+  </div>
+
+
+           
+            
+           
+    {%endblock%}

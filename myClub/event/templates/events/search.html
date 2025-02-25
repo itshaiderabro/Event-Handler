@@ -1,0 +1,45 @@
+{% extends 'events/base.html' %}
+   
+
+        {%block body%}
+        {%if searched%}
+       <h1>You have searched for {{searched}}</h1>
+        <br>
+        <br>
+        {%for vanue in vanues%}
+        <div class="card" style="margin-bottom: 20px;">
+                <div class="card-header">
+                        {%if vanue.name%}
+                    <h1>{{vanue.name}}</h1>
+                    {%endif%}
+                </div>
+                <div class="card-body">
+                        {%if vanue.address%}
+                  <h5 class="card-title"> {{vanue.address}}</h5>
+                  {%endif%}
+                  <p class="card-text">
+                        {%if vanue.phone%}
+                    <li>{{vanue.phone}}</li>
+                        {%endif%}
+                    {%if vanue.map_reference%}
+                    <li>{{vanue.map_reference}}</li>
+                    {%endif%}
+                        {%if vanue.owner %}
+<li>{{vanue.owner}}</li>
+                    {%endif%}
+                
+                    
+                   
+                    
+                </p>
+                
+<br>
+                 
+                </div>
+              </div>
+
+
+        {%endfor%}
+         {%endif%}
+         {%endblock%}
+         

@@ -1,0 +1,76 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{%url 'index' %}">My Club</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          
+          <li class="nav-item">
+            <a class="nav-link" href="{%url 'index' '2025' 'March'%}">March</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Events
+            </a>
+            <ul class="dropdown-menu">
+              <li>  <a class="dropdown-item" href="{%url 'events' %}">Events</a></li>
+              {%if user.is_authenticated%}
+              <li> <a class="dropdown-item" href="{%url 'add_event' %}"> add Event</a></li>
+              {%endif%}
+              <li> <a class="dropdown-item" href="{%url 'search_event' %}"> Search Event</a></li>
+             
+            </ul>
+          </li>
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Vanues
+            </a>
+            <ul class="dropdown-menu">
+              <li>  <a class="dropdown-item" href="{%url 'vanue' %}">Vanues</a></li>
+              {%if user.is_authenticated%}
+              <li> <a class="dropdown-item" href="{%url 'add_vanue' %}"> add Vanue</a></li>
+              {%endif%}
+             
+            </ul>
+          </li>
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Download
+            </a>
+            <ul class="dropdown-menu">
+              <li> <a class="dropdown-item" href="{%url 'vanue_text' %}">Text Generate Vanues</a></li>
+              <li><a class="nav-link" href="{%url 'vanue_pdf' %}">PDF Generate Vanues</a></li>
+              <li><a class="dropdown-item" href="{%url 'vanue_csv' %}">CSV Generate Vanues</a></li>
+            </ul>
+          </li>
+          {%if user.is_superuser%}
+          <li class="nav-item">
+            <a class="nav-link" href="{%url 'admin' %}">Admin</a>
+          </li>
+          {%endif%}
+          {%if user.is_authenticated%}
+          <li class="nav-item">
+            <a class="nav-link" href="{%url 'logout' %}">LogOut</a>
+          </li>
+          {%else%}
+
+          <li class="nav-item">
+            <a class="nav-link" href="{%url 'registration' %}">Registration</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{%url 'login' %}">LogIn</a>
+          </li>
+          {%endif%}
+        </ul>
+        <form class="d-flex" role="search" method="post" action="{%url 'search' %}">
+          {%csrf_token%} 
+          <input class="form-control me-2" type="search" placeholder="Search Vanue" name="search_text" aria-label="Search">
+          <button class="btn btn-outline-secondary" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>

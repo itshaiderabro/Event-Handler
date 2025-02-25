@@ -1,0 +1,21 @@
+{% extends 'events/base.html' %}
+
+        {%block body%}
+        {%if form.errors  %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+           There is error in your form
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {%endif%}
+        <div class="shadow p-4 mb-5 bg-body rounded">
+        <center> <h1> Registration </h1></center>
+        <br>
+        <br>
+        <form method="post" action="{%url 'registration' %}">
+          <div class="mb-3">
+              {%csrf_token%}
+             {{form.as_p}}
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+         {%endblock%}
