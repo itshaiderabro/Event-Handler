@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-c0jce&kt6=c^mrhgwnge$*0va3$4u3f(bc=t#+fk=h+xk_vv6p'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["https://eventhandlerdjango-ckbue2bbfghwfngg.southeastasia-01.azurewebsites.net"]
 
 
 
